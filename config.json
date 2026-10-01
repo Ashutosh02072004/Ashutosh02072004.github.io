@@ -3,9 +3,10 @@
   "latest_version_code": 1,
   "update_message": "New maps and skins are here - update now!",
   "store_url": "https://play.google.com/store/apps/details?id=com.strikesquad.game",
-  "news": "Welcome to Strike Squad! Season 1 is live.",
+  "news": "Online QUICK PLAY is live - jump in!",
   "event_name": "",
   "coins_multiplier": 1.0,
   "interstitial_every_n_matches": -1,
-  "interstitial_min_seconds": -1
+  "interstitial_min_seconds": -1,
+  "server_address": "140.245.218.104"
 }
