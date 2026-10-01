@@ -8,5 +8,5 @@
   "coins_multiplier": 1.0,
   "interstitial_every_n_matches": -1,
   "interstitial_min_seconds": -1,
-  "server_address": "140.245.218.104"
+  "server_address": "wss://140-245-218-104.sslip.io"
 }
