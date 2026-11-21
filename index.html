@@ -2,49 +2,587 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ashutosh Games</title>
-<meta name="description" content="Ashutosh Games - makers of Strike Squad, a fast 2D jetpack shooter for Android.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strike Squad – Jetpack Shooter | Free Download (APK)</title>
+<meta name="description" content="Strike Squad is a free 2D jetpack shooter for Android. Capture the Flag, Gun Game, Team Deathmatch and Free For All – online with friends or offline vs smart bots. Download the APK.">
+<meta name="theme-color" content="#0a1220">
+<link rel="canonical" href="https://ashutosh02072004.github.io/">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<!-- Social share preview (WhatsApp, Instagram, X, Discord) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Strike Squad">
+<meta property="og:title" content="Strike Squad – Jetpack Shooter (Free)">
+<meta property="og:description" content="Fly, shoot, capture the flag. Free jetpack battles online or offline vs bots.">
+<meta property="og:url" content="https://ashutosh02072004.github.io/">
+<meta property="og:image" content="https://ashutosh02072004.github.io/img/og.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Fonts: only 2 families, swap so text shows instantly -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero.webp" fetchpriority="high">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Strike Squad",
+  "url": "https://ashutosh02072004.github.io/",
+  "image": "https://ashutosh02072004.github.io/img/og.jpg",
+  "description": "Free 2D jetpack shooter: Capture the Flag, Gun Game, Team Deathmatch and Free For All, online or offline vs bots.",
+  "genre": ["Action", "Shooter", "Arcade"],
+  "gamePlatform": "Android",
+  "applicationCategory": "Game",
+  "operatingSystem": "Android 7.0+",
+  "playMode": ["SinglePlayer", "MultiPlayer"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "author": { "@type": "Organization", "name": "Ashutosh Games" }
+}
+</script>
+
 <style>
-  :root { --bg:#07111f; --panel:#0b1a2e; --text:#e8f0ff; --sub:#8ea6c4; --accent:#ffa01c; --cyan:#35b6ff; --border:#1c4a74; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:40px 16px 64px; }
-  h1 { color:var(--accent); margin:0 0 4px; font-size:2rem; }
-  .muted { color:var(--sub); margin-top:0; }
-  .game { display:flex; gap:20px; align-items:center; background:var(--panel); border:1px solid var(--border);
-          border-radius:14px; padding:20px; margin-top:28px; }
-  .game img { width:112px; height:112px; border-radius:22px; flex:none; }
-  .game h2 { margin:0 0 6px; color:var(--cyan); }
-  .game p { margin:0; }
-  a { color:var(--cyan); }
-  ul { padding-left:20px; }
-  footer { margin-top:40px; color:var(--sub); font-size:.9rem; }
-  @media (max-width:520px) { .game { flex-direction:column; text-align:center; } }
+:root{
+  --bg:#0a1220; --bg2:#0f1a2e; --panel:#13213a; --panel2:#182a48; --line:#24395e;
+  --text:#eef3ff; --sub:#9db0cf; --dim:#6c80a3;
+  --orange:#ff8a1f; --amber:#ffc21a; --cyan:#3ec9ff; --red:#ff4d5e; --green:#3ddc84;
+  --grad:linear-gradient(135deg,#ffb020 0%,#ff7a1a 100%);
+  --radius:18px; --wrap:1160px;
+  --shadow:0 18px 50px -18px rgba(0,0,0,.65);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{font-family:"Russo One",Inter,sans-serif;font-weight:400;letter-spacing:.3px;line-height:1.15;margin:0}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
+section{padding:88px 0}
+.eyebrow{display:inline-block;font:700 .78rem/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.lead{color:var(--sub);font-size:1.08rem;max-width:620px}
+.center{text-align:center}.center .lead{margin:14px auto 0}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:14px;font-weight:700;font-size:1rem;
+  border:0;cursor:pointer;text-decoration:none!important;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--grad);color:#1a0d00;box-shadow:0 10px 30px -8px rgba(255,138,31,.65)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(255,138,31,.8)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.11)}
+.btn-big{padding:18px 28px;font-size:1.1rem;border-radius:16px}
+.btn small{display:block;font-weight:600;font-size:.74rem;opacity:.75;line-height:1.2}
+.btn .lbl{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15}
+.btn svg{flex:none}
+
+/* Announcement bar */
+.bar{background:linear-gradient(90deg,#1b2e52,#2a1f4a);color:var(--text);font-size:.9rem;text-align:center;padding:9px 16px}
+.bar b{color:var(--amber)}
+.bar a{color:var(--text);font-weight:600;text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(10,18,32,.78);backdrop-filter:saturate(1.4) blur(12px);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid rgba(36,57,94,.6)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text)!important;text-decoration:none!important;font-family:"Russo One";font-size:1.15rem}
+.brand img{width:36px;height:36px;border-radius:10px}
+.navlinks{display:flex;gap:22px;margin-left:auto}
+.navlinks a{color:var(--sub);font-weight:600;font-size:.94rem}
+.navlinks a:hover{color:var(--text);text-decoration:none}
+nav .btn{padding:10px 16px;font-size:.92rem;border-radius:12px}
+@media (max-width:860px){.navlinks{display:none}nav .btn{margin-left:auto}}
+
+/* Hero */
+.hero{position:relative;padding:70px 0 90px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(img/hero.webp) center/cover no-repeat;opacity:.22;filter:blur(2px) saturate(1.2)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(900px 500px at 80% 20%,rgba(62,201,255,.16),transparent 60%),
+             radial-gradient(800px 500px at 10% 90%,rgba(255,138,31,.18),transparent 60%),
+             linear-gradient(180deg,rgba(10,18,32,.55),var(--bg) 92%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);margin:6px 0 18px}
+.hero h1 .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:1.15rem}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);font-size:.85rem;font-weight:600;color:var(--sub)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+.meta-line{margin-top:14px;color:var(--dim);font-size:.85rem}
+.qr{display:none;align-items:center;gap:14px;margin-top:26px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);
+  border:1px dashed var(--line);max-width:380px}
+.qr img{width:92px;height:92px;border-radius:8px;background:#fff;padding:4px}
+.qr p{font-size:.88rem;color:var(--sub)}
+.qr b{color:var(--text)}
+@media (hover:hover) and (pointer:fine){.qr{display:flex}}
+
+.device{position:relative;border-radius:28px;padding:12px;background:linear-gradient(160deg,#2a3f66,#121d33);
+  box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.08);transform:perspective(1400px) rotateY(-9deg) rotateX(3deg);
+  transition:transform .5s ease}
+.device:hover{transform:perspective(1400px) rotateY(-3deg) rotateX(1deg)}
+.device img{border-radius:18px;width:100%;aspect-ratio:16/9;object-fit:cover}
+.device::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:46px;right:4px;left:auto;transform:translateY(-50%);
+  border-radius:4px;background:rgba(255,255,255,.12)}
+.float-badge{position:absolute;padding:10px 14px;border-radius:14px;background:var(--panel);border:1px solid var(--line);
+  box-shadow:var(--shadow);font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;animation:bob 4s ease-in-out infinite}
+.float-badge.a{left:-18px;bottom:-22px}
+.float-badge.b{right:-10px;top:-20px;animation-delay:-2s}
+.float-badge .dot{width:10px;height:10px;border-radius:50%}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media (max-width:900px){
+  .hero{padding:44px 0 70px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:44px}
+  .device{transform:none}
+  .float-badge.a{left:8px}.float-badge.b{right:8px}
+}
+
+/* Ticker */
+.ticker{border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;white-space:nowrap;padding:14px 0}
+.ticker .track{display:inline-flex;gap:40px;animation:scroll 32s linear infinite;padding-left:40px}
+.ticker span{font-family:"Russo One";color:var(--sub);font-size:1.05rem;display:inline-flex;align-items:center;gap:40px}
+.ticker span::after{content:"✦";color:var(--orange)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-1px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center}
+.stat b{display:block;font-family:"Russo One";font-size:2.2rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.stat span{color:var(--sub);font-size:.92rem;font-weight:600}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* Modes */
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.mode{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  transition:transform .2s ease,border-color .2s}
+.mode:hover{transform:translateY(-4px);border-color:#3a5a90}
+.mode img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.mode div{padding:18px}
+.mode h3{margin-bottom:6px}
+.mode p{color:var(--sub);font-size:.94rem}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:6px;margin-bottom:10px}
+.t-blue{background:rgba(62,201,255,.14);color:var(--cyan)}
+.t-red{background:rgba(255,77,94,.14);color:var(--red)}
+.t-amb{background:rgba(255,194,26,.14);color:var(--amber)}
+.t-grn{background:rgba(61,220,132,.14);color:var(--green)}
+@media (max-width:1000px){.modes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.modes{grid-template-columns:1fr}}
+
+/* Feature rows */
+.rows{display:flex;flex-direction:column;gap:80px;margin-top:56px}
+.row{display:grid;grid-template-columns:1.1fr 1fr;gap:52px;align-items:center}
+.row:nth-child(even) .shot{order:2}
+.shot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.shot img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.row h3{font-size:clamp(1.5rem,2.8vw,2rem);margin-bottom:14px}
+.row p{color:var(--sub)}
+.ticks{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.ticks li{display:flex;gap:10px;align-items:flex-start}
+.ticks li::before{content:"";flex:none;width:20px;height:20px;margin-top:2px;border-radius:6px;
+  background:rgba(255,138,31,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 7' fill='none' stroke='%23ffb020' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:860px){.row{grid-template-columns:1fr;gap:24px}.row:nth-child(even) .shot{order:0}}
+
+/* Worlds */
+.alt{background:var(--bg2);border-block:1px solid var(--line)}
+.worlds{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.world{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;background:var(--panel);border:1px solid var(--line);font-weight:600}
+.world i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.wide-shot{margin-top:36px}
+
+/* Gallery */
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:min(78%,520px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px 16px 18px;margin:40px -16px 0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.gallery button{scroll-snap-align:center;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);cursor:zoom-in}
+.gallery img{aspect-ratio:16/9;object-fit:cover;width:100%;transition:transform .3s}
+.gallery button:hover img{transform:scale(1.03)}
+.gnav{display:flex;gap:10px;justify-content:center;margin-top:8px}
+.gnav button{width:44px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--text);font-size:1.2rem;cursor:pointer}
+dialog.lb{padding:0;border:0;background:transparent;max-width:min(96vw,1280px);width:100%}
+dialog.lb::backdrop{background:rgba(3,7,15,.88)}
+dialog.lb img{width:100%;border-radius:12px}
+dialog.lb form{position:absolute;top:8px;right:8px}
+dialog.lb form button{width:40px;height:40px;border-radius:10px;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:1.3rem;cursor:pointer}
+
+/* Download */
+.dl{position:relative;overflow:hidden;border-radius:28px;padding:48px;background:
+  radial-gradient(600px 300px at 90% 0%,rgba(62,201,255,.18),transparent 70%),
+  radial-gradient(600px 300px at 0% 100%,rgba(255,138,31,.22),transparent 70%),var(--panel);
+  border:1px solid var(--line);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.dl h2{margin-bottom:12px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:24px 0}
+.fact{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.fact span{display:block;color:var(--dim);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.fact b{font-size:1rem}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{counter-increment:s;display:flex;gap:14px;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.steps li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;
+  background:var(--grad);color:#1a0d00;font-family:"Russo One"}
+.steps b{display:block}
+.steps p{color:var(--sub);font-size:.92rem}
+.note{margin-top:16px;font-size:.85rem;color:var(--dim)}
+.note code{font-size:.78rem;color:var(--sub);word-break:break-all}
+.soon{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:.88rem;color:var(--sub)}
+@media (max-width:900px){.dl{grid-template-columns:1fr;padding:28px 20px}}
+@media (max-width:420px){.facts{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{max-width:780px;margin:40px auto 0;display:grid;gap:10px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 20px}
+.faq summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:700;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--orange);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--sub);padding:0 0 18px}
+
+/* Final CTA + footer */
+.final{text-align:center;padding:90px 0}
+.final h2{font-size:clamp(2rem,5vw,3.2rem)}
+.final .ctas{justify-content:center}
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:44px 0 calc(28px + env(safe-area-inset-bottom));color:var(--sub);font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer h4{color:var(--text);margin:0 0 10px;font-size:.95rem}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+footer a{color:var(--sub)}
+.legal{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:.82rem;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+@media (max-width:700px){.fgrid{grid-template-columns:1fr 1fr}.fgrid>div:first-child{grid-column:1/-1}}
+
+/* Sticky mobile download bar */
+.mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:none;
+  transform:translateY(140%);transition:transform .3s ease}
+.mbar.show{transform:none}
+.mbar .btn{width:100%;justify-content:center}
+@media (max-width:700px){.mbar{display:block}}
+
+/* Reveal on scroll (only when JS runs) */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+}
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<main>
-  <h1>Ashutosh Games</h1>
-  <p class="muted">Independent game developer from India.</p>
 
-  <div class="game">
-    <img src="icon.png" alt="Strike Squad icon">
+<div class="bar">🔥 <b>v0.8.1 is out</b> — Capture the Flag &amp; Gun Game are here. <a href="#download">Download the APK →</a></div>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/icon-192.webp" alt="" width="36" height="36">Strike Squad</a>
+    <div class="navlinks">
+      <a href="#modes">Modes</a><a href="#features">Features</a><a href="#worlds">Maps</a><a href="#screens">Screens</a><a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary" href="#download" data-dl-scroll>Download</a>
+  </div>
+</nav>
+
+<main id="top">
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
     <div>
-      <h2>Strike Squad</h2>
-      <p>Fast 2D jetpack battles. Team Deathmatch, Free For All, Capture the Flag and Gun Game - play offline against smart bots or with friends.</p>
-      <p style="margin-top:10px"><a href="https://play.google.com/store/apps/details?id=com.strikesquad.game">Get it on Google Play</a></p>
+      <span class="eyebrow">Free 2D jetpack shooter · Android</span>
+      <h1>Small maps.<br><span class="hl">Big action.</span></h1>
+      <p class="lead">Strap on a jetpack and jump into fast mid-air battles. Capture the flag, climb the Gun Game ladder or team up 4v4 — online with friends or offline against smart bots.</p>
+      <div class="ctas">
+        <a class="btn btn-primary btn-big" data-apk href="#download">
+          <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.48l1.84-3.18a.38.38 0 10-.66-.38l-1.86 3.22a11.5 11.5 0 00-9.84 0L5.22 5.92a.38.38 0 10-.66.38L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/></svg>
+          <span class="lbl">Download APK<small data-apk-meta>Free · Android 7.0+</small></span>
+        </a>
+        <a class="btn btn-ghost btn-big" href="#screens">See it in action</a>
+      </div>
+      <div class="chips">
+        <span class="chip"><i></i>100% free</span>
+        <span class="chip">📶 Online + offline</span>
+        <span class="chip">⚖️ No pay-to-win</span>
+        <span class="chip">🇮🇳 English · हिंदी</span>
+      </div>
+      <div class="qr">
+        <img src="img/qr.svg" alt="QR code linking to this download page" width="92" height="92">
+        <p><b>On a computer?</b><br>Scan with your phone's camera to open this page and download the game.</p>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="device">
+        <img src="img/ctf.webp" alt="Capture the Flag gameplay: a player carries the flag across a snowy map" width="1280" height="720" fetchpriority="high">
+      </div>
+      <div class="float-badge b"><span class="dot" style="background:var(--green)"></span>Quick Play online</div>
+      <div class="float-badge a"><span class="dot" style="background:var(--amber)"></span>Bots: Easy · Normal · Hard</div>
     </div>
   </div>
+</header>
 
-  <h3>Support</h3>
-  <ul>
-    <li>Contact: <a href="mailto:btechcsymca@gmail.com">btechcsymca@gmail.com</a></li>
-    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-    <li><a href="delete-data.html">Delete your data</a></li>
-  </ul>
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Capture the Flag</span><span>Gun Game</span><span>Team Deathmatch</span><span>Free For All</span><span>Jetpacks</span><span>Low-gravity Space Station</span><span>Smart bots</span><span>Daily missions</span><span>Lucky Spin</span><span>Skins &amp; sky trails</span>
+    <span>Capture the Flag</span><span>Gun Game</span><span>Team Deathmatch</span><span>Free For All</span><span>Jetpacks</span><span>Low-gravity Space Station</span><span>Smart bots</span><span>Daily missions</span><span>Lucky Spin</span><span>Skins &amp; sky trails</span>
+  </div>
+</div>
 
-  <footer>© 2026 Ashutosh Games</footer>
+<!-- STATS -->
+<section style="padding:40px 0 0">
+  <div class="wrap stats rv">
+    <div class="stat"><b>4</b><span>Game modes</span></div>
+    <div class="stat"><b>28</b><span>Map combos</span></div>
+    <div class="stat"><b>5</b><span>Weapons + grenades</span></div>
+    <div class="stat"><b>8</b><span>Soldier skins</span></div>
+  </div>
+</section>
+
+<!-- MODES -->
+<section id="modes">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Game modes</span>
+      <h2>Four ways to win.</h2>
+      <p class="lead">Short 3-minute matches. Pick a mode, drop in, start shooting.</p>
+    </div>
+    <div class="modes">
+      <article class="mode rv"><img src="img/ctf-sm.webp" alt="Capture the Flag" loading="lazy" width="640" height="360"><div><span class="tag t-blue">NEW</span><h3>Capture the Flag</h3><p>Steal the enemy flag and fly it home. First to 3 captures wins.</p></div></article>
+      <article class="mode rv"><img src="img/gungame-sm.webp" alt="Gun Game" loading="lazy" width="640" height="360"><div><span class="tag t-amb">NEW</span><h3>Gun Game</h3><p>A new weapon every 2 kills — SMG to Sniper to Pistol. Finish the ladder first.</p></div></article>
+      <article class="mode rv"><img src="img/teams-sm.webp" alt="Team Deathmatch" loading="lazy" width="640" height="360"><div><span class="tag t-red">TEAMS</span><h3>Team Deathmatch</h3><p>2v2, 3v3 or 4v4. Play with friends or fill the squad with bots.</p></div></article>
+      <article class="mode rv"><img src="img/jetpack-sm.webp" alt="Free For All" loading="lazy" width="640" height="360"><div><span class="tag t-grn">SOLO</span><h3>Free For All</h3><p>Everyone for themselves. Top the kill board before the timer ends.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="alt">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Why players love it</span>
+      <h2>Built for quick, crazy fights.</h2>
+    </div>
+    <div class="rows">
+      <div class="row rv">
+        <div class="shot"><img src="img/jetpack.webp" alt="Jetpack battle in low gravity" loading="lazy" width="1280" height="720"></div>
+        <div>
+          <span class="eyebrow">Jetpack combat</span>
+          <h3>Every fight is a dogfight.</h3>
+          <p>Fly, dodge and shoot at the same time. Your jetpack refuels on the ground — time your flights, then rain down grenades.</p>
+          <ul class="ticks"><li>Twin-stick touch controls, adjustable size</li><li>Assault Rifle, SMG, Shotgun, Sniper, Pistol + frags</li><li>Medkits, shields and weapon crates</li></ul>
+        </div>
+      </div>
+      <div class="row rv">
+        <div class="shot"><img src="img/lobby.webp" alt="Strike Squad home screen with Start button" loading="lazy" width="1280" height="720"></div>
+        <div>
+          <span class="eyebrow">Online &amp; offline</span>
+          <h3>Play anywhere, with anyone.</h3>
+          <p>Hit <b>QUICK PLAY</b> to join an online match in seconds, host a private room with a code for friends, or go fully offline against bots — no internet needed.</p>
+          <ul class="ticks"><li>Room codes for private matches</li><li>Bots on Easy, Normal and Hard</li><li>Bots fill empty slots online</li></ul>
+        </div>
+      </div>
+      <div class="row rv">
+        <div class="shot"><img src="img/skins.webp" alt="Character screen with outfits and gear" loading="lazy" width="1280" height="720"></div>
+        <div>
+          <span class="eyebrow">Rewards</span>
+          <h3>Level up. Look legendary.</h3>
+          <p>Earn coins and XP every match. Unlock outfits, helmets, backpacks, weapon paints and sky trails — including an animated rainbow.</p>
+          <ul class="ticks"><li>3 daily missions + a free Lucky Spin</li><li>7-day login rewards</li><li>Cosmetic only — every soldier plays fair</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLDS -->
+<section id="worlds">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Maps</span>
+      <h2>4 layouts × 7 worlds.</h2>
+      <p class="lead">Arena, Twin Towers, Canyon and Bunker — each playable in every world. Space Station has low gravity!</p>
+    </div>
+    <div class="worlds rv">
+      <span class="world"><i style="background:#3fa34d"></i>Jungle Island</span>
+      <span class="world"><i style="background:#e39a4a"></i>Desert Base</span>
+      <span class="world"><i style="background:#b9d3ea"></i>Frozen Factory</span>
+      <span class="world"><i style="background:#ff5a2a"></i>Volcano Core</span>
+      <span class="world"><i style="background:#8a6cff"></i>Space Station</span>
+      <span class="world"><i style="background:#ff4fd8"></i>Neon City</span>
+      <span class="world"><i style="background:#f08a24"></i>Haunted Night</span>
+    </div>
+    <div class="shot wide-shot rv"><img src="img/maps.webp" alt="Map selection screen showing all seven worlds" loading="lazy" width="1280" height="720"></div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section id="screens" class="alt">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">A look inside</span>
+      <h2>Real screens from the game.</h2>
+      <p class="lead">Tap any screenshot to see it full size.</p>
+    </div>
+    <div class="gallery" id="gallery">
+      <button data-full="img/ctf.webp"><img src="img/ctf-sm.webp" alt="Capture the Flag" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/gungame.webp"><img src="img/gungame-sm.webp" alt="Gun Game" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/jetpack.webp"><img src="img/jetpack-sm.webp" alt="Jetpack battle" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/teams.webp"><img src="img/teams-sm.webp" alt="Team battle" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/worlds.webp"><img src="img/worlds-sm.webp" alt="Volcano world" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/lobby.webp"><img src="img/lobby-sm.webp" alt="Home screen" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/skins.webp"><img src="img/skins-sm.webp" alt="Skins and gear" loading="lazy" width="640" height="360"></button>
+      <button data-full="img/maps.webp"><img src="img/maps-sm.webp" alt="Map selection" loading="lazy" width="640" height="360"></button>
+    </div>
+    <div class="gnav"><button type="button" aria-label="Previous screenshots" data-g="-1">‹</button><button type="button" aria-label="Next screenshots" data-g="1">›</button></div>
+  </div>
+  <dialog class="lb" id="lb"><form method="dialog"><button aria-label="Close">×</button></form><img alt=""></dialog>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="wrap">
+    <div class="dl rv">
+      <div>
+        <span class="eyebrow">Download</span>
+        <h2>Get Strike Squad free.</h2>
+        <p class="lead">Direct APK download for Android. No account, no sign-up — install and play.</p>
+        <div class="ctas" style="margin-bottom:0">
+          <a class="btn btn-primary btn-big" data-apk href="#">
+            <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 011 1v9.59l3.3-3.3a1 1 0 111.4 1.42l-5 5a1 1 0 01-1.4 0l-5-5a1 1 0 111.4-1.42L11 13.59V4a1 1 0 011-1zM5 19a1 1 0 100 2h14a1 1 0 100-2H5z"/></svg>
+            <span class="lbl">Download APK<small data-apk-meta>Free · Android 7.0+</small></span>
+          </a>
+        </div>
+        <div class="facts">
+          <div class="fact"><span>Version</span><b data-f="version">0.8.1</b></div>
+          <div class="fact"><span>Size</span><b data-f="size">—</b></div>
+          <div class="fact"><span>Requires</span><b>Android 7.0+</b></div>
+          <div class="fact"><span>Price</span><b>Free (ads, optional)</b></div>
+        </div>
+        <p class="soon">🛒 Google Play listing coming soon — the APK is the same game.</p>
+        <p class="note" data-sha-wrap hidden>SHA-256: <code data-f="sha"></code></p>
+      </div>
+      <div>
+        <h3 style="margin-bottom:14px">How to install</h3>
+        <ol class="steps">
+          <li><div><b>Download the APK</b><p>Tap the button. If Chrome warns about the file type, tap <i>Download anyway</i>.</p></div></li>
+          <li><div><b>Open the file</b><p>Open it from your notifications or the <i>Downloads</i> folder.</p></div></li>
+          <li><div><b>Allow the install</b><p>If asked, turn on <i>Allow from this source</i> for your browser or file manager, then go back.</p></div></li>
+          <li><div><b>Tap Install → Play</b><p>Your coins, levels and skins stay safe when you install a newer version over the top.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="alt">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>Is Strike Squad free?</summary><p>Yes, completely free. Ads appear only between offline matches, and you can choose to watch an ad to double your coins. All items are cosmetic, so nobody can pay to win.</p></details>
+      <details class="rv"><summary>Is the APK safe to install?</summary><p>Yes — it's the official build, signed by Ashutosh Games and downloaded straight from our GitHub release. Android shows a warning for every app installed outside a store; that's normal. Only download it from this page.</p></details>
+      <details class="rv"><summary>Can I play offline?</summary><p>Yes. Every mode works offline against bots (Easy, Normal or Hard). You only need internet for online matches.</p></details>
+      <details class="rv"><summary>How do I play with friends?</summary><p>Tap <b>ONLINE</b>. Use <b>QUICK PLAY</b> to join a public match, or <b>HOST</b> a room and share the code — friends type it and tap <b>JOIN</b>.</p></details>
+      <details class="rv"><summary>How do I update the game?</summary><p>The game tells you when a new version is out. Download the new APK from this page and install it over the old one — your progress is kept. Don't uninstall first, or you'll lose your coins and skins.</p></details>
+      <details class="rv"><summary>Will it run on my phone?</summary><p>It needs Android 7.0 or newer. Older or low-end phones start in LOW graphics automatically, and you can switch between 30 and 60 FPS in Settings.</p></details>
+      <details class="rv"><summary>Is it available in Hindi?</summary><p>Yes — Settings → Language → हिंदी.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap rv">
+    <span class="eyebrow">Ready?</span>
+    <h2>Gear up. Jump in.</h2>
+    <p class="lead" style="margin:14px auto 0">Grab your squad and settle it in the sky.</p>
+    <div class="ctas">
+      <a class="btn btn-primary btn-big" data-apk href="#download"><span class="lbl">Download Strike Squad<small data-apk-meta>Free · Android 7.0+</small></span></a>
+      <a class="btn btn-ghost btn-big" href="mailto:hello@ashkrit.in?subject=Strike%20Squad">Contact us</a>
+    </div>
+  </div>
+</section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="#top"><img src="img/icon-192.webp" alt="" width="36" height="36" loading="lazy">Strike Squad</a>
+        <p style="margin-top:12px;max-width:340px">A free 2D jetpack shooter by Ashutosh Games, an independent developer from India.</p>
+      </div>
+      <div>
+        <h4>Game</h4>
+        <ul><li><a href="#modes">Modes</a></li><li><a href="#worlds">Maps</a></li><li><a href="#screens">Screenshots</a></li><li><a href="#download">Download</a></li></ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@ashkrit.in">Contact &amp; support</a></li><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="delete-data.html">Delete your data</a></li></ul>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 Ashutosh Games</span><span>Virtual coins only · No real-money gambling</span></div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar"><a class="btn btn-primary" data-apk href="#download"><span class="lbl">Download APK<small data-apk-meta>Free · Android 7.0+</small></span></a></div>
+
+<script>
+/* ===== Edit only this block when you release a new APK ===== */
+const APK = {
+  url: "https://github.com/Ashutosh02072004/Ashutosh02072004.github.io/releases/latest/download/strike-squad.apk",
+  version: "0.8.1",
+  size: "71 MB", // shown next to the button
+  sha256: "32e185205f5ec710ea9c38f6969ddb3ccb1b34c3b7be1f9c81cfb5cb1412f3b4"
+};
+/* ============================================================ */
+
+(() => {
+  const meta = ["Free", APK.size, "v" + APK.version].filter(Boolean).join(" · ");
+  document.querySelectorAll("[data-apk]").forEach(a => {
+    a.href = APK.url;
+    a.setAttribute("download", "strike-squad.apk");
+    a.addEventListener("click", () => {            // simple count, visible in GA/Plausible if you add one later
+      try { window.dataLayer && dataLayer.push({ event: "apk_download" }); } catch (e) {}
+    });
+  });
+  document.querySelectorAll("[data-apk-meta]").forEach(s => s.textContent = meta);
+  const set = (k, v) => document.querySelectorAll('[data-f="' + k + '"]').forEach(e => e.textContent = v);
+  set("version", APK.version);
+  set("size", APK.size || "—");
+  if (APK.sha256) { set("sha", APK.sha256); document.querySelector("[data-sha-wrap]").hidden = false; }
+
+  // Reveal-on-scroll
+  const rv = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    rv.forEach(el => io.observe(el));
+  } else rv.forEach(el => el.classList.add("in"));
+
+  // Sticky mobile download bar: show after hero, hide over the download section
+  const mbar = document.getElementById("mbar"), hero = document.querySelector(".hero"), dl = document.getElementById("download");
+  let pastHero = false, atDl = false;
+  const upd = () => mbar.classList.toggle("show", pastHero && !atDl);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(([e]) => { atDl = e.isIntersecting; upd(); }).observe(dl);
+  }
+
+  // Gallery arrows + lightbox
+  const g = document.getElementById("gallery");
+  document.querySelectorAll("[data-g]").forEach(b => b.addEventListener("click", () =>
+    g.scrollBy({ left: +b.dataset.g * g.clientWidth * 0.8, behavior: "smooth" })));
+  const lb = document.getElementById("lb");
+  g.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    const img = lb.querySelector("img");
+    img.src = b.dataset.full; img.alt = b.querySelector("img").alt;
+    if (lb.showModal) lb.showModal(); else window.open(b.dataset.full);
+  }));
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+})();
+</script>
 </body>
 </html>
